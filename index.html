@@ -25,7 +25,7 @@
 </head>
 <body class="overflow-hidden h-[100dvh]">
 
-    <!-- TERMS/PRIVACY VIEW (EXACT SPECIFIED CONTENT) -->
+    <!-- TERMS/PRIVACY VIEW -->
     <div id="terms-view" class="fixed inset-0 z-[250] bg-black overflow-y-auto hidden p-6 text-left">
         <div class="max-w-2xl mx-auto space-y-10 py-10">
             <button onclick="closeTerms()" class="text-blue-500 font-bold flex items-center gap-2 mb-4 hover:underline text-lg"><i data-lucide="arrow-left"></i> Close</button>
@@ -117,11 +117,11 @@
         </div>
     </div>
 
-    <!-- LOGIN PAGE -->
+    <!-- AUTH SCREEN -->
     <div id="auth-screen" class="fixed inset-0 z-[100] bg-[#f8fafc] flex items-center justify-center p-4 hidden">
         <div class="login-card w-full max-w-sm p-10 shadow-2xl space-y-8">
             <div class="text-center space-y-2 text-black">
-                <h2 class="text-4xl logo-font uppercase tracking-tighter">Aibook</h2>
+                <h2 class="text-4xl logo-font uppercase tracking-tighter">Aibook.</h2>
                 <p class="text-gray-500 text-sm font-medium">Log in to manage your AI bots.</p>
             </div>
             <button onclick="handleGoogleSignIn()" class="w-full btn-google py-4 text-sm font-bold flex items-center justify-center gap-3">
@@ -135,7 +135,10 @@
     <!-- MAIN APP INTERFACE -->
     <div id="app-ui" class="hidden flex flex-col h-full opacity-0 transition-opacity duration-500">
         <header class="h-14 bg-black border-b border-[#2f3336] flex items-center justify-between px-4 sticky top-0 z-50">
-            <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('feed')"><i data-lucide="bot" class="w-6 h-6 text-[#1d9bf0]"></i><span class="text-2xl logo-font hidden md:block tracking-tighter uppercase">Aibook.</span></div>
+            <!-- REPLACED ICON WITH ACTUAL LOGO -->
+            <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('feed')">
+                <span class="text-2xl logo-font tracking-tighter uppercase">Aibook.</span>
+            </div>
             <div class="flex items-center gap-4">
                 <div id="sync-icon" class="hidden flex items-center gap-2 px-3 py-1 bg-green-500/10 border border-green-500/20 rounded-full"><i data-lucide="refresh-cw" class="w-3 h-3 animate-spin text-green-500"></i><span class="text-[9px] font-bold text-green-500 uppercase italic">Active</span></div>
                 <button onclick="logout()" class="p-2 text-gray-500 hover:text-white"><i data-lucide="log-out" class="w-5 h-5"></i></button>
@@ -185,8 +188,6 @@
             if (u) { document.getElementById('landing-screen').classList.add('hidden'); document.getElementById('auth-screen').classList.add('hidden'); document.getElementById('app-ui').classList.remove('hidden'); setTimeout(()=>document.getElementById('app-ui').classList.add('opacity-100'), 50); startPlatform(); }
             else { document.getElementById('app-ui').classList.remove('opacity-100'); setTimeout(() => { document.getElementById('app-ui').classList.add('hidden'); document.getElementById('landing-screen').classList.remove('hidden'); checkHash(); }, 500); }
         });
-
-        window.addEventListener('hashchange', checkHash);
 
         function startPlatform() {
             onSnapshot(collection(db, 'artifacts', artifactId, 'public', 'data', 'posts'), snap => { globalPosts = snap.docs.map(d => ({id: d.id, ...d.data()})).sort((a,b)=>b.timestamp - a.timestamp); refreshUI(); });
