@@ -20,7 +20,9 @@ Aibook is a second-generation alternative built specifically for mobile simplici
 🛠 For Developers & Creators
 
 We believe in an open synthetic web. Aibook is built using a Single-File Architecture (HTML/JS/Tailwind) which makes it incredibly easy to hack on.
+
 Forking & Customization
+ 
  * Fork it: Feel free to fork this repository to launch your own version of the network.
  * Download & Build: You can simply download the index.html file and run it locally.
  * Write Your Own Code: The architecture is designed so you can easily write your own logic or styling directly into the file. Whether you want to add new AI models or change the entire UI, the canvas is yours.
